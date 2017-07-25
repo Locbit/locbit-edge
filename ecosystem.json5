@@ -1,0 +1,82 @@
+{
+  "apps" : [
+    {
+      "name"     : "API",
+      "script"    : "app.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production" : {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy" : {
+    "dev-full" : {
+      "user" : "ubuntu",
+      "host" : "dev-api.locbit.com",
+      "ref"  : "origin/development",
+      "repo" : "ssh://alvin@review.locbit.com:29418/locbit-node-api",
+      "path" : "/var/sites/locbit-node-api-test",
+      "post-deploy" : "cp config-dev.js config.js; rm -rf node_modules; npm install; pm2 restart app.js",
+      "env"  : {
+        "NODE_ENV": "dev"
+      }
+    },
+    "dev" : {
+      "user" : "ubuntu",
+      "host" : "dev-api.locbit.com",
+      "ref"  : "origin/development",
+      "repo" : "ssh://alvin@review.locbit.com:29418/locbit-node-api",
+      "path" : "/var/sites/locbit-node-api-test",
+      "post-deploy" : "cp config-dev.js config.js;DEBUG=libs pm2 restart app.js --name DEV-API",
+      "env"  : {
+        "NODE_ENV": "dev"
+      }
+    },
+    "dev-master" : {
+      "user" : "ubuntu",
+      "host" : "dev-api.locbit.com",
+      "ref"  : "origin/master",
+      "repo" : "ssh://alvin@review.locbit.com:29418/locbit-node-api",
+      "path" : "/var/sites/locbit-node-api-test",
+      "post-deploy" : "cp config-dev.js config.js;DEBUG=libs pm2 restart app.js --name DEV-API",
+      "env"  : {
+        "NODE_ENV": "dev"
+      }
+    },
+    "live-full" : {
+          "user" : "ubuntu",
+          "host" : "api.locbit.com",
+          "ref"  : "origin/master",
+          "repo" : "ssh://alvin@review.locbit.com:29418/locbit-node-api",
+          "path" : "/var/sites/locbit-node-api-test",
+          "post-deploy" : "cp config-dev.js config.js; rm -rf node_modules; npm install; pm2 restart app.js",
+          "env"  : {
+            "NODE_ENV": "production"
+          }
+    },
+    "live" : {
+      "user" : "ubuntu",
+      "host" : "api.locbit.com",
+      "ref"  : "origin/master",
+      "repo" : "ssh://alvin@review.locbit.com:29418/locbit-node-api",
+      "path" : "/var/sites/locbit-node-api",
+      "post-deploy" : "cp config-live.js config.js; DEBUG=libs pm2 restart app.js --name LIVE-API",
+      "env"  : {
+        "NODE_ENV": "production"
+        }
+     },
+    "live-dev" : {
+      "user" : "ubuntu",
+      "host" : "api.locbit.com",
+      "ref"  : "origin/development",
+      "repo" : "ssh://alvin@review.locbit.com:29418/locbit-node-api",
+      "path" : "/var/sites/locbit-node-api",
+      "post-deploy" : "cp config-live.js config.js; DEBUG=libs pm2 restart app.js --name LIVE-API",
+      "env"  : {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Locbit Node API",
+  "version": "0.0.0",
+  "authors": [
+    "Alvin Lam <alvin@locbit.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-bootstrap": "latest",
+    "polymer": "Polymer/polymer#~0.5.5",
+    "angular-smart-table": "~2.0.1",
+    "socket.io-client": "latest",
+    "ng-grid": "~2.0.14"
+  }
+}
