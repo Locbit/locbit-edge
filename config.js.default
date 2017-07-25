@@ -1,0 +1,9 @@
+var config = {};
+
+config.default = {};
+config.default.protocol = 'websocket';
+config.endpoint = 'ws://test-api.locbit.com:8081';
+
+config.port = 8001;
+
+module.exports = config;
