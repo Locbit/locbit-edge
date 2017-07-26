@@ -4,13 +4,7 @@ var fs = require('fs');
 
 var current_lib = null;
 
-var config;
-config = require('./config/config.js');
-var localConfig = require("./config.js");
-for(var prop in localConfig) {
-    config[prop] = localConfig[prop];
-}
-
+var config = require("./config.js");
 var protocol = require('./libs/control_libs/'+config.default.protocol +'.js');
 
 current_lib = protocol.connect(config);

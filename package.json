@@ -1,7 +1,7 @@
 {
-  "name": "latrice",
+  "name": "locbit",
   "version": "0.0.1",
-  "description": "latrice node.js/websocket",
+  "description": "locbit node.js/websocket",
   "dependencies": {
   "restify": "^3.0.3",
     "chai": "^3.5.0",
