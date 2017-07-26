@@ -7,7 +7,6 @@ function connect(config) {
     try {
         local_config = config;
         console.log('Connecting to Locbit websocket...')
-        console.log('config', config);
         websocket = new ws(config.endpoint);
         websocket.on("open", function () {
             console.log('Websocket has been connected. Ready to use now.');
@@ -15,6 +14,12 @@ function connect(config) {
 
             websocket.on("message", function (message) {
                 message = JSON.parse(message);
+                if (message.hasOwnProperty('protocol') && message.hasOwnProperty('payload')) {
+                    var protocol = require('./libs/control_libs/'+message.protocol +'.js');
+                    protocol.process(message.payload).then(function(){
+                        //TODO may need handler after it is done
+                    });
+                }
                 // TODO need to send to the event emitter
             });
         });
