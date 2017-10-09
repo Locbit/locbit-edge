@@ -15,7 +15,7 @@ function connect(config) {
             websocket.on("message", function (message) {
                 message = JSON.parse(message);
                 if (message.hasOwnProperty('protocol') && message.hasOwnProperty('payload')) {
-                    var protocol = require('./libs/control_libs/'+message.protocol +'.js');
+                    var protocol = require('./'+message.protocol +'.js');
                     protocol.process(message.payload).then(function(){
                         //TODO may need handler after it is done
                     });
