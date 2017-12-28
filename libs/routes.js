@@ -21,7 +21,7 @@ function init(config, procotol) {
 
 
     api.post('/event', function (req, res, next) {
-        procotol.send(req.params, null);
+        procotol.send(req.params, {req:req});
         res.send(200, {success: true});
         next();
     });
